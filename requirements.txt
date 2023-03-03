@@ -1,0 +1,8 @@
+Package            Version
+------------------ -------
+asgiref            3.6.0
+backports.zoneinfo 0.2.1
+Django             4.1.7
+pip                23.0.1
+setuptools         47.1.0
+sqlparse           0.4.3
