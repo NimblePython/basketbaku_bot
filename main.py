@@ -5,7 +5,7 @@ from telebot import types
 # Устанавливаем русский язык в Wikipedia
 wikipedia.set_lang("ru")
 # Создаем объект бота
-bot = telebot.TeleBot('5735237236:AAGNyBBM5NJloqjETQMqjCX6qeTIGDXks2g')
+bot = telebot.TeleBot('')
 
 
 @bot.message_handler(commands=['start'])
