@@ -8,3 +8,4 @@ schedule==1.1.0
 soupsieve==2.4
 urllib3==1.26.14
 wikipedia==1.4.0
+
