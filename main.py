@@ -5,7 +5,7 @@ from telebot import types
 # Устанавливаем русский язык в Wikipedia
 wikipedia.set_lang("ru")
 # Создаем объект бота
-bot = telebot.TeleBot('5735237236:AAGNyBBM5NJloqjETQMqjCX6qeTIGDXks2g')
+bot = telebot.TeleBot('')
 
 
 @bot.message_handler(commands=['start'])
@@ -19,7 +19,7 @@ def start(message):
     itm4 = types.InlineKeyboardButton(text='Расписание занятий', callback_data=4)
     markup.add(itm1, itm2, itm3, itm4)
     markup2.add(btn1)
-    bot.send_message(message.chat.id,
+    bot.send_message(message.from_user.id,
                      '👋 Привет! Можешь задать интересующий тебя вопрос про баскетбол или воспользоваться '
                      'кнопками-подсказаками',
                      reply_markup=markup)
@@ -38,7 +38,7 @@ def set_timer(message):
 
 @bot.message_handler(commands=['unset'])
 def unset_timer(message):
-    schedule.clear(message.chat.id)
+    schedule.clear(message.from_user.id)
 
 
 @bot.message_handler(content_types=['text'])
@@ -47,7 +47,7 @@ def get_text_messages(message):
         #markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
         #btn1 = types.KeyboardButton('Напишите термин из баскетбола, я помогу найти информацию об этом')
         #markup.add(btn1)
-        bot.send_message(message.chat.id,
+        bot.send_message(message.from_user.id,
                          '❓ Можешь задать интересующий вопрос про баскетбол или воспользоваться кнопками-подсказаками')
     elif message.text == 'Адрес':
         bot.send_message(message.from_user.id,
@@ -83,7 +83,7 @@ def query_handler(call):
     if call.data == '2':
         answer = 'Мы играем в спортивном зале школы № 258 по адресу: ул. Академика Гасана Алиева, д. 39'
         map_png = open(r'map.png', 'rb')
-        bot.send_photo(call.message.chat.id, map_png)
+        bot.send_photo(call.message.from_user.id, map_png)
     if call.data == '3':
         answer = 'Абонентская плата в месяц:\n4 посещения в месяц - 40 манат\n' \
                  '8 посещений в месяц - 80 манат' \
@@ -91,9 +91,9 @@ def query_handler(call):
                  '\n\nЕсли ты не уверен и хочешь присмотреться, то первое ознакомительное посещение будет бесплатным =)'
     if call.data == '4':
         answer = 'Игры проходят два раза в неделю:\n\n' \
-                 '======  ВТОРНИК в 20-00  ======\n\n' \
-                 '======  ЧЕТВЕРГ в 20-00   ======'
-    bot.send_message(call.message.chat.id, answer)
+                 '===  ВТОРНИК в 20-00  ===\n\n' \
+                 '===  ЧЕТВЕРГ в 20-00   ==='
+    bot.send_message(call.message.from_user.id, answer)
     # Убираем клавиатуру
     # bot.edit_message_reply_markup(call.message.chat.id, call.message.message_id)
 
